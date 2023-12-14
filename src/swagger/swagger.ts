@@ -1,18 +1,7 @@
 import { Application } from "express";
-import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import * as OpenApiValidator from "express-openapi-validator";
-
-export const openAPISpecification = swaggerJsdoc({
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "Authentication service",
-      version: "1.0.0",
-    },
-  },
-  apis: ["src/components/*.ts", "src/routes/*.ts", "src/error/error.ts"],
-});
+import openAPISpecification from "../schema/openapi.specification.json";
 
 export function initSwagger(app: Application) {
   app.get("/openapi.json", (_req, res) => res.send(openAPISpecification));

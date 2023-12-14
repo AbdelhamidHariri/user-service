@@ -1,6 +1,6 @@
 import express from "express";
 import { initSwagger } from "./swagger/swagger";
-import { initErrorHandling } from "./error/error";
+import { errorMiddleware } from "./middlewares/error.middleware";
 import { userRouter } from "./routes/user.routes";
 
 const app = express();
@@ -8,9 +8,9 @@ const port = 3000;
 
 app.use(express.json());
 initSwagger(app);
-initErrorHandling(app);
+errorMiddleware(app);
 
-app.use("/user", userRouter);
+app.use("/users", userRouter);
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);

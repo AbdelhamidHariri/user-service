@@ -1,0 +1,3 @@
+async function reset() {}
+
+reset();

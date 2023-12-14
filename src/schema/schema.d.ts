@@ -5,19 +5,23 @@
 
 
 export interface paths {
-  "/user": {
-    /** @description Welcome to swagger-jsdoc! */
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["userPassword"];
-        };
-      };
+  "/": {
+    /**
+     * Get a list of users
+     * @description Retrieve a list of user entities.
+     */
+    get: {
       responses: {
-        /** @description Returns a mysterious string. */
+        /** @description Successful response */
         200: {
           content: {
-            "application/json": components["schemas"]["userPassword"];
+            "application/json": components["schemas"]["User"][];
+          };
+        };
+        /** @description Internal Server Error */
+        500: {
+          content: {
+            "application/json": external["openapi.specification.json"];
           };
         };
       };
@@ -29,12 +33,33 @@ export type webhooks = Record<string, never>;
 
 export interface components {
   schemas: {
-    userPassword: {
-      username: string;
-      password: string;
+    User: {
+      /** @default johndoe@gmail.com */
+      email?: string;
+      /** @default securePassword123 */
+      password?: string;
+      rememberMe?: boolean;
+      /** @default john */
+      firstName?: string;
+      /** @default Doe */
+      lastName?: string;
+      tcAgreed?: boolean;
+      /** @default false */
+      firstSignOn?: boolean;
+      /** Format: date-time */
+      createdAt?: string;
+      /** Format: date-time */
+      updatedAt?: string;
     };
     Error: {
       message?: string;
+    };
+    error: {
+      /** @default 123 */
+      status?: number;
+      /** @default Something went wrong */
+      message?: string;
+      error?: Record<string, never>;
     };
   };
   responses: never;
@@ -46,6 +71,8 @@ export interface components {
 
 export type $defs = Record<string, never>;
 
-export type external = Record<string, never>;
+export interface external {
+  "openapi.specification.json": unknown;
+}
 
 export type operations = Record<string, never>;

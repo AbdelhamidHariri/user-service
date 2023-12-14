@@ -1,29 +1,3 @@
-/**
- *	@openapi
- *	components:
- *	  schemas:
- *      User:
- *        type: object
- *        properties:
- *          email:
- *            type: string
- *          password:
- *            type: string
- *          rememberMe:
- *            type: boolean
- *          firstName:
- *            type: string
- *          lastName:
- *            type: string
- *          tcAgreed:
- *            type: boolean
- *          firstSignOn:
- *            type: boolean
- *          createdAt:
- *            type: date
- *          updatedAt:
- *            type: date
- */
 export class User {
   constructor(
     private email: string,
