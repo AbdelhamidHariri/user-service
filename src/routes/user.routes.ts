@@ -1,62 +1,21 @@
 import { Request, Response, Router } from "express";
-import * as userService from "../service/user.service";
+import { paths } from "../schema/schema";
+import { createUser, getAllUsers } from "../service/user.service";
 
 export const userRouter = Router();
-/**
- * @openapi
- * /:
- *  get:
- *    summary: Get a list of users
- *    description: Retrieve a list of user entities.
- *    responses:
- *      200:
- *        description: Successful response
- *        content:
- *          application/json:
- *            schema:
- *              type: array
- *              items:
- *                $ref: '#/components/schemas/User'
- *      500:
- *        description: Internal Server Error
- *        content:
- *          application/json:
- *            schema:
- *               $ref: '#components/schemas/error'
- */
-userRouter.get("/", async (req: Request, res: Response) => {
-  const users = await userService.getUsers();
+type GetAllUsersRes = paths["/users"]["get"]["responses"]["200"]["content"]["application/json"];
+userRouter.get("/", async (req: Request, res: Response<GetAllUsersRes>) => {
+  const users = await getAllUsers();
+  return res.status(200).json(users);
 });
 
-/**
- * @openapi
- * /{id}:
- *   get:
- *   	summary: Get a user by id
- *   	description: Retrieve a single user by id.
- *   	parameters:
- *   	- in: path
- *     	name: userId
- *				schema:
- *       		type: integer
- *         	required: true
- *    responses:
- *     	200:
- *       	description: Successful response
- *       	content:
- *         	application/json:
- *            schema:
- *             	type: object
- *             	items:
- *               	$ref: '#/components/schemas/User'
- *      500:
- *       	description: Internal Server Error
- *       	content:
- *         	application/json:
- *           	schema:
- *              $ref: '#components/schemas/error'
- */
+export type PostCreateUserReqBody = paths["/users"]["post"]["requestBody"]["content"]["application/json"];
+export type PostCreateUserRes = paths["/users"]["post"]["responses"]["201"]["content"]["application/json"];
+userRouter.post("/", async (req: Request<{}, {}, PostCreateUserReqBody>, res: Response<PostCreateUserRes>) => {
+  const user = await createUser(req.body);
+  return res.status(201).send(user);
+});
+
 userRouter.get(":id", async (req: Request, res: Response) => {});
-userRouter.post("/");
-userRouter.delete("/:id");
+userRouter.delete("/:id", async (req: Request, res: Response) => {});
 userRouter.put("/:id");

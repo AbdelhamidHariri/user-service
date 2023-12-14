@@ -5,7 +5,7 @@
 
 
 export interface paths {
-  "/": {
+  "/users": {
     /**
      * Get a list of users
      * @description Retrieve a list of user entities.
@@ -26,6 +26,26 @@ export interface paths {
         };
       };
     };
+    /**
+     * Resource to create a user
+     * @description Create a user
+     */
+    post: {
+      /** @description User to add to the system */
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["UserInput"];
+        };
+      };
+      responses: {
+        /** @description Successful response */
+        201: {
+          content: {
+            "application/json": components["schemas"]["User"];
+          };
+        };
+      };
+    };
   };
 }
 
@@ -35,14 +55,13 @@ export interface components {
   schemas: {
     User: {
       /** @default johndoe@gmail.com */
-      email?: string;
+      email: string;
       /** @default securePassword123 */
       password?: string;
-      rememberMe?: boolean;
       /** @default john */
-      firstName?: string;
+      firstName: string;
       /** @default Doe */
-      lastName?: string;
+      lastName: string;
       tcAgreed?: boolean;
       /** @default false */
       firstSignOn?: boolean;
@@ -50,6 +69,18 @@ export interface components {
       createdAt?: string;
       /** Format: date-time */
       updatedAt?: string;
+    };
+    UserInput: {
+      /** @default johndoe@gmail.com */
+      email: string;
+      /** @default securePassword123 */
+      password: string;
+      /** @default john */
+      firstName: string;
+      /** @default Doe */
+      lastName: string;
+      /** @default true */
+      tcAgreed: boolean;
     };
     Error: {
       message?: string;

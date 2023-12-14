@@ -10,7 +10,7 @@ const pool = new Pool({
   max: 10,
 });
 
-type VariableType = string | number | Date;
+type VariableType = string | number | Date | boolean;
 
 export async function query(query: string, variables = <VariableType[] | undefined>[]) {
   const client = await pool.connect();

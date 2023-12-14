@@ -9,4 +9,8 @@ export class User {
     private createdAt: Date,
     private updatedAt: Date
   ) {}
+
+  isValidEmail() {
+    return true;
+  }
 }

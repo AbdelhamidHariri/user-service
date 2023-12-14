@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "doppler run -- nodemon ./src/index.ts",
     "generate": "npx openapi-typescript ./src/schema/openapi.specification.json -o ./src/schema/schema.d.ts",
-    "migrate": "doppler run -- ts-node ./src/migrations/index.ts"
+    "migrate": "doppler run -- ts-node ./src/migrations/migrate.ts"
   },
   "keywords": [],
   "author": "",

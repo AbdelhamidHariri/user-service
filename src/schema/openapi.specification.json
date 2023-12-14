@@ -34,6 +34,33 @@
             }
           }
         }
+      },
+      "post": {
+        "summary": "Resource to create a user",
+        "description": "Create a user",
+        "requestBody": {
+          "description": "User to add to the system",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -41,6 +68,7 @@
     "schemas": {
       "User": {
         "type": "object",
+        "required": ["email", "firstName", "lastName"],
         "properties": {
           "email": {
             "type": "string",
@@ -49,9 +77,6 @@
           "password": {
             "type": "string",
             "default": "securePassword123"
-          },
-          "rememberMe": {
-            "type": "boolean"
           },
           "firstName": {
             "type": "string",
@@ -75,6 +100,32 @@
           "updatedAt": {
             "type": "string",
             "format": "date-time"
+          }
+        }
+      },
+      "UserInput": {
+        "type": "object",
+        "required": ["email", "firstName", "lastName", "password", "tcAgreed"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "default": "johndoe@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "default": "securePassword123"
+          },
+          "firstName": {
+            "type": "string",
+            "default": "john"
+          },
+          "lastName": {
+            "type": "string",
+            "default": "Doe"
+          },
+          "tcAgreed": {
+            "type": "boolean",
+            "default": true
           }
         }
       },
