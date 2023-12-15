@@ -17,7 +17,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/User"
+                    "$ref": "#/components/schemas/UserDTO"
                   }
                 }
               }
@@ -55,7 +55,91 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/UserDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "summary": "Resource to retrieve a single user",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User identification string",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Resource to delete a user",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User identification string",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "put": {
+        "summary": "Resource to update user",
+        "requestBody": {
+          "description": "User to update io the system",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserDTO"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User identification string",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDTO"
                 }
               }
             }
@@ -66,17 +150,13 @@
   },
   "components": {
     "schemas": {
-      "User": {
+      "UserDTO": {
         "type": "object",
         "required": ["email", "firstName", "lastName"],
         "properties": {
           "email": {
             "type": "string",
             "default": "johndoe@gmail.com"
-          },
-          "password": {
-            "type": "string",
-            "default": "securePassword123"
           },
           "firstName": {
             "type": "string",
@@ -86,17 +166,9 @@
             "type": "string",
             "default": "Doe"
           },
-          "firstSignOn": {
+          "isFirstTimeSignin": {
             "type": "boolean",
             "default": false
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
           }
         }
       },
@@ -119,10 +191,6 @@
           "lastName": {
             "type": "string",
             "default": "Doe"
-          },
-          "tcAgreed": {
-            "type": "boolean",
-            "default": true
           }
         }
       },

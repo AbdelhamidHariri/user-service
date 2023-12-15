@@ -15,7 +15,7 @@ export interface paths {
         /** @description Successful response */
         200: {
           content: {
-            "application/json": components["schemas"]["User"][];
+            "application/json": components["schemas"]["UserDTO"][];
           };
         };
         /** @description Internal Server Error */
@@ -41,8 +41,65 @@ export interface paths {
         /** @description Successful response */
         201: {
           content: {
-            "application/json": components["schemas"]["User"];
+            "application/json": components["schemas"]["UserDTO"];
           };
+        };
+      };
+    };
+  };
+  "/users/{id}": {
+    /** Resource to retrieve a single user */
+    get: {
+      parameters: {
+        path: {
+          /** @description User identification string */
+          id: string;
+        };
+      };
+      responses: {
+        /** @description Successful response */
+        200: {
+          content: {
+            "application/json": components["schemas"]["UserDTO"];
+          };
+        };
+      };
+    };
+    /** Resource to update user */
+    put: {
+      parameters: {
+        path: {
+          /** @description User identification string */
+          id: string;
+        };
+      };
+      /** @description User to update io the system */
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["UserDTO"];
+        };
+      };
+      responses: {
+        /** @description Successful response */
+        201: {
+          content: {
+            "application/json": components["schemas"]["UserDTO"];
+          };
+        };
+      };
+    };
+    /** Resource to delete a user */
+    delete: {
+      parameters: {
+        path: {
+          /** @description User identification string */
+          id: string;
+        };
+      };
+      responses: {
+        /** @description Successful response */
+        204: {
+          content: never;
         };
       };
     };
@@ -53,21 +110,15 @@ export type webhooks = Record<string, never>;
 
 export interface components {
   schemas: {
-    User: {
+    UserDTO: {
       /** @default johndoe@gmail.com */
       email: string;
-      /** @default securePassword123 */
-      password?: string;
       /** @default john */
       firstName: string;
       /** @default Doe */
       lastName: string;
       /** @default false */
-      firstSignOn?: boolean;
-      /** Format: date-time */
-      createdAt?: string;
-      /** Format: date-time */
-      updatedAt?: string;
+      isFirstTimeSignin?: boolean;
     };
     UserInput: {
       /** @default johndoe@gmail.com */
@@ -78,8 +129,6 @@ export interface components {
       firstName: string;
       /** @default Doe */
       lastName: string;
-      /** @default true */
-      tcAgreed: boolean;
     };
     Error: {
       message?: string;

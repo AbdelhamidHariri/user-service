@@ -41,7 +41,6 @@ async function init() {
   await createMigrationTable();
   const migrations = (await getMigrations())?.rows.map((migration) => migration.name);
   const migrationFiles = getMigrationFiles(`${__dirname}/migrations`).filter((file) => !migrations?.includes(file));
-  console.log("files:", migrationFiles);
   migrationFiles.forEach(async (file) => {
     const moduleA = await import(`${__dirname}/migrations/${file}`);
     await moduleA.execute();
