@@ -1,5 +1,5 @@
 import { Request, Response, Router } from "express";
-import { components, paths } from "../schema/schema";
+import { paths } from "../schema/schema";
 import * as userService from "../service/user.service";
 
 export const userRouter = Router();
