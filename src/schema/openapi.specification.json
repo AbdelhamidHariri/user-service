@@ -86,9 +86,6 @@
             "type": "string",
             "default": "Doe"
           },
-          "tcAgreed": {
-            "type": "boolean"
-          },
           "firstSignOn": {
             "type": "boolean",
             "default": false

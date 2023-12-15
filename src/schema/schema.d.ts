@@ -62,7 +62,6 @@ export interface components {
       firstName: string;
       /** @default Doe */
       lastName: string;
-      tcAgreed?: boolean;
       /** @default false */
       firstSignOn?: boolean;
       /** Format: date-time */

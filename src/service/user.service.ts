@@ -22,7 +22,6 @@ export async function createUser({ email, firstName, lastName, password, tcAgree
       first_name,
       last_name,
       password,
-      tc_agreed
     )
       VALUES
       (
@@ -30,11 +29,10 @@ export async function createUser({ email, firstName, lastName, password, tcAgree
         $2,
         $3,
         $4,
-        $5
       )
     RETURNING *
   `,
-      [email, firstName, lastName, password, tcAgreed]
+      [email, firstName, lastName, password]
     )
   )?.rows[0] as User;
 }
