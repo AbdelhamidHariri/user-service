@@ -1,12 +1,17 @@
 import { UserRepository } from "../interface/user.repository";
 import { UserDTO, UserInputDTO } from "../interface/user.types";
+import { API_ERROR } from "../lib/api.error";
+import { USER_NOT_FOUND } from "../schema/http-errors";
 
 export async function getAll(repo: UserRepository) {
+  throw new Error();
   return await repo.getAll();
 }
 
 export async function getWithId(repo: UserRepository, id: string) {
-  return await repo.getWithId(id);
+  const user = await repo.getWithId(id);
+  if (!user) throw new API_ERROR(USER_NOT_FOUND);
+  return user;
 }
 
 export async function create(repo: UserRepository, user: UserInputDTO) {

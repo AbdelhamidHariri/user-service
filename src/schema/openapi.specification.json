@@ -174,7 +174,7 @@
       },
       "UserInput": {
         "type": "object",
-        "required": ["email", "firstName", "lastName", "password", "tcAgreed"],
+        "required": ["email", "firstName", "lastName", "password"],
         "properties": {
           "email": {
             "type": "string",

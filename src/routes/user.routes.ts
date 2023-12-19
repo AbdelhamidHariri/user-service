@@ -2,14 +2,19 @@ import { Request, Response, Router } from "express";
 import { paths } from "../schema/schema";
 import * as userService from "../service/user.service";
 import { userRepository } from "../repositories/user.db";
+import { errorHandler } from "../lib/errorHandler";
 
 export const userRouter = Router();
 const repo = userRepository();
 type GetAllUsersRes = paths["/users"]["get"]["responses"]["200"]["content"]["application/json"];
-userRouter.get("/", async (_req: Request, res: Response<GetAllUsersRes>) => {
-  const users = await userService.getAll(repo);
-  return res.status(200).json(users);
-});
+userRouter.get(
+  "/",
+  errorHandler(async (req: Request, res: Response<GetAllUsersRes>) => {
+    const users = await userService.getAll(repo);
+    req.log.info("something");
+    res.status(200).json(users);
+  })
+);
 
 export type PostCreateUserReqBody = paths["/users"]["post"]["requestBody"]["content"]["application/json"];
 export type PostCreateUserRes = paths["/users"]["post"]["responses"]["201"]["content"]["application/json"];
