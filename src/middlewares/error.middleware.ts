@@ -8,6 +8,11 @@ export function errorMiddleware(app: Application) {
         message: err.message,
         code: err.code,
       });
+    } else if (err.status) {
+      res.status(err.status || 500).json({
+        message: err.message,
+        errors: err.errors,
+      });
     } else {
       res.status(500).json({
         message: err.message,
