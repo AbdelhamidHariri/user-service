@@ -4,7 +4,6 @@ import { API_ERROR } from "../lib/api.error";
 import { USER_NOT_FOUND } from "../schema/http-errors";
 
 export async function getAll(repo: UserRepository) {
-  throw new Error();
   return await repo.getAll();
 }
 

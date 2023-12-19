@@ -38,7 +38,7 @@ export function userRepository(): UserRepository {
   };
 
   const getWithId = async (id: string) => {
-    return (await query("SELECT * FROM users WHERE id = $1", [id]))?.rows[0] as UserDTO;
+    return (await query("SELECT * FROM users WHERE id = $1;", [id]))?.rows[0] as UserDTO | undefined;
   };
 
   const deleteWithId = async (id: string) => {
