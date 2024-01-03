@@ -3,6 +3,7 @@ import { paths } from "../schema/schema";
 import * as userService from "../service/user.service";
 import { userRepository } from "../repositories/user.db";
 import { errorHandler } from "../lib/errorHandler";
+import newrelic from "newrelic";
 
 export const userRouter = Router();
 const repo = userRepository();
@@ -32,7 +33,7 @@ userRouter.get(
   "/:id",
   errorHandler(async (req: Request<GetUserParams>, res: Response<GetUserWithIdRes>) => {
     const user = await userService.getWithId(repo, req.params.id);
-    res.status(200).json(user);
+    res.status(200).json({ ...user });
   })
 );
 

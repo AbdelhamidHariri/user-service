@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "doppler run -- nodemon -r newrelic ./src/index.ts",
+    "dev": "doppler run -- nodemon --require newrelic ./src/index.ts",
     "generate": "npx openapi-typescript ./src/schema/openapi.specification.json -o ./src/schema/schema.d.ts",
     "migrate": "doppler run -- ts-node ./src/migrations/migrate.ts"
   },
@@ -12,26 +12,39 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/newrelic": "^9.14.3",
     "@types/pg": "^8.10.9",
     "husky": "^8.0.0",
     "nodemon": "^3.0.2",
     "prettier": "2.8.8"
   },
   "dependencies": {
+    "@opentelemetry/api": "^1.7.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.40.2",
+    "@opentelemetry/resources": "^1.19.0",
+    "@opentelemetry/sdk-metrics": "^1.19.0",
+    "@opentelemetry/sdk-node": "^0.46.0",
+    "@opentelemetry/semantic-conventions": "^1.19.0",
     "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.11",
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^20.10.3",
+    "@types/supertest": "^6.0.2",
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.6",
     "express": "^4.18.2",
     "express-openapi-validator": "^5.1.2",
+    "jest": "^29.7.0",
     "newrelic": "^11.7.0",
     "openapi-typescript": "^6.7.2",
     "pg": "^8.11.3",
     "pino-http": "^8.6.0",
+    "supertest": "^6.3.3",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0",
+    "ts-jest": "^29.1.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.2"
+    "typescript": "^5.3.2",
+    "zod": "^3.22.4"
   }
 }

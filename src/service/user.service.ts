@@ -1,3 +1,4 @@
+import { validateEmail, validatePassword } from "../controllers/user.controller";
 import { UserRepository } from "../interface/user.repository";
 import { UserDTO, UserInputDTO } from "../interface/user.types";
 import { API_ERROR } from "../lib/api.error";
@@ -14,6 +15,8 @@ export async function getWithId(repo: UserRepository, id: string) {
 }
 
 export async function create(repo: UserRepository, user: UserInputDTO) {
+  validateEmail(user.email);
+  validatePassword(user.password);
   return await repo.create(user);
 }
 

@@ -155,20 +155,16 @@
         "required": ["email", "firstName", "lastName"],
         "properties": {
           "email": {
-            "type": "string",
-            "default": "johndoe@gmail.com"
+            "type": "string"
           },
           "firstName": {
-            "type": "string",
-            "default": "john"
+            "type": "string"
           },
           "lastName": {
-            "type": "string",
-            "default": "Doe"
+            "type": "string"
           },
           "isFirstTimeSignin": {
-            "type": "boolean",
-            "default": false
+            "type": "boolean"
           }
         }
       },
@@ -177,20 +173,16 @@
         "required": ["email", "firstName", "lastName", "password"],
         "properties": {
           "email": {
-            "type": "string",
-            "default": "johndoe@gmail.com"
+            "type": "string"
           },
           "password": {
-            "type": "string",
-            "default": "securePassword123"
+            "type": "string"
           },
           "firstName": {
-            "type": "string",
-            "default": "john"
+            "type": "string"
           },
           "lastName": {
-            "type": "string",
-            "default": "Doe"
+            "type": "string"
           }
         }
       },
@@ -206,12 +198,10 @@
         "type": "object",
         "properties": {
           "status": {
-            "type": "integer",
-            "default": 123
+            "type": "integer"
           },
           "message": {
-            "type": "string",
-            "default": "Something went wrong"
+            "type": "string"
           },
           "error": {
             "type": "object"

@@ -6,7 +6,11 @@ export function userRepository(): UserRepository {
   const getAll = async () => {
     return (
       await query(`
-    SELECT * FROM users
+    SELECT
+      email,
+      first_name as "firstName",
+      last_name as "lastName"
+    FROM users
   `)
     )?.rows as UserDTO[];
   };
