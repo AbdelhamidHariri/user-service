@@ -3,7 +3,6 @@ import { paths } from "../schema/schema";
 import * as userService from "../service/user.service";
 import { userRepository } from "../repositories/user.db";
 import { errorHandler } from "../lib/errorHandler";
-import newrelic from "newrelic";
 
 export const userRouter = Router();
 const repo = userRepository();
