@@ -28,7 +28,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
         with:
-          build-args: DOPPLER_TOKEN=${{secretes.DOPPLER_TOKEN}}
+          build-args: DOPPLER_TOKEN=${{secrets.DOPPLER_TOKEN}}
           context: .
           file: ./Dockerfile
           push: true
