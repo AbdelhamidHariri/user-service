@@ -1,5 +1,4 @@
 import { Application, Response, Request, NextFunction } from "express";
-import { API_ERROR } from "../lib/api.error";
 import { UNAUTHENTICATED } from "../schema/http-errors";
 import axios from "axios";
 
