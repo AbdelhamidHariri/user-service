@@ -7,6 +7,7 @@ import { SemanticResourceAttributes } from "@opentelemetry/semantic-conventions"
 import pkg from "./package.json";
 import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
 import { CompositePropagator, W3CBaggagePropagator, W3CTraceContextPropagator } from "@opentelemetry/core";
+import crypto from "crypto";
 
 import { diag, DiagConsoleLogger, DiagLogLevel } from "@opentelemetry/api";
 diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.DEBUG);
