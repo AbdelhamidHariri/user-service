@@ -14,7 +14,6 @@ export function errorMiddleware(app: Application) {
         errors: err.errors,
       });
     } else {
-      req.log.error(err, err.message);
       res.status(500).json({
         message: err.message,
         code: "internal_server_error",

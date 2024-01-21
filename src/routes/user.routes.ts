@@ -11,7 +11,6 @@ userRouter.get(
   "/",
   errorHandler(async (req: Request, res: Response<GetAllUsersRes>) => {
     const users = await userService.getAll(repo);
-    req.log.info("something");
     res.status(200).json(users);
   })
 );

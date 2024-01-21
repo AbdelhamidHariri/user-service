@@ -2,12 +2,10 @@ import express from "express";
 import { initSwagger } from "./swagger/swagger";
 import { errorMiddleware } from "./middlewares/error.middleware";
 import { userRouter } from "./routes/user.routes";
-import pino from "pino-http";
 
 export const app = express();
 const port = 3000;
 
-app.use(pino());
 app.use(express.json());
 initSwagger(app);
 
