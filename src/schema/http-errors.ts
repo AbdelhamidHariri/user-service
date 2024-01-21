@@ -15,3 +15,9 @@ export const INVALID_PASSWORD = {
   code: "INVALID_PASSWORD",
   message: "Provided password is not a valid password",
 };
+
+export const UNAUTHENTICATED = {
+  statusCode: 401,
+  code: "UNAUTHENTICATED",
+  message: "User is not authenticated",
+};

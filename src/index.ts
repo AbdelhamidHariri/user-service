@@ -4,8 +4,9 @@ import { errorMiddleware } from "./middlewares/error.middleware";
 import { userRouter } from "./routes/user.routes";
 import { rabbitMQ } from "./lib/rabbitmq";
 import { handlers } from "./consumers";
+import { authenticate } from "./middlewares/auth.middlewar";
 
-export const app = express();
+export let app = express();
 
 const consumeHandlers = async () => {
   const messageBroker = await rabbitMQ();
@@ -19,6 +20,7 @@ consumeHandlers();
 app.use(express.json());
 initSwagger(app);
 
+authenticate(app);
 app.use("/users", userRouter);
 
 errorMiddleware(app);
