@@ -1,7 +1,7 @@
-import { UserDTO, UserInputDTO } from "./user.types";
+import { UserDTO, CreateUser } from "./user.types";
 
 export interface UserRepository {
-  create(userDTO: UserInputDTO): Promise<UserDTO>;
+  create(userDTO: CreateUser): Promise<UserDTO>;
   getAll(): Promise<UserDTO[]>;
   getWithId(id: string): Promise<UserDTO | undefined>;
   update(id: string, userDTO: UserDTO): Promise<UserDTO>;

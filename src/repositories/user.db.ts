@@ -1,5 +1,5 @@
 import { UserRepository } from "../interface/user.repository";
-import { UserDTO, UserInputDTO } from "../interface/user.types";
+import { CreateUser, UserDTO, UserInputDTO } from "../interface/user.types";
 import { query } from "../lib/db";
 
 export function userRepository(): UserRepository {
@@ -15,7 +15,7 @@ export function userRepository(): UserRepository {
     )?.rows as UserDTO[];
   };
 
-  const create = async ({ email, firstName, lastName, password }: UserInputDTO) => {
+  const create = async ({ email, firstName, lastName, password, salt }: CreateUser) => {
     return (
       await query(
         `
@@ -25,18 +25,20 @@ export function userRepository(): UserRepository {
       email,
       first_name,
       last_name,
-      password
+      password,
+      salt
     )
     VALUES
     (
       $1,
       $2,
       $3,
-      $4
+      $4,
+      $5
     )
     RETURNING *
   `,
-        [email, firstName, lastName, password]
+        [email.toLowerCase(), firstName, lastName, password, salt]
       )
     )?.rows[0] as UserDTO;
   };

@@ -40,6 +40,9 @@ const sdk = new NodeSDK({
       "@opentelemetry/instrumentation-express": {
         enabled: true,
       },
+      "@opentelemetry/instrumentation-amqplib": {
+        enabled: true,
+      },
     }),
   ],
   autoDetectResources: true,
